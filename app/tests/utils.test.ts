@@ -4,8 +4,8 @@ import {
   formatDateToLocal,
   generateYAxis,
   generatePagination,
-} from "./utils";
-import type { Revenue } from "./definitions";
+} from "../lib/utils";
+import type { Revenue } from "../lib/definitions";
 
 describe("formatCurrency", () => {
   it("should format a positive amount correctly", () => {
