@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { fetchFilteredCustomers } from "@/app/lib/data";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 export default async function CustomersTable({
   query,
@@ -26,13 +27,20 @@ export default async function CustomersTable({
                       <div>
                         <div className="mb-2 flex items-center">
                           <div className="flex items-center gap-3">
-                            <Image
-                              src={customer.image_url}
-                              className="rounded-full"
-                              alt={`${customer.name}'s profile picture`}
-                              width={28}
-                              height={28}
-                            />
+                            {typeof customer.image_url === "string" &&
+                            customer.image_url.trim().length > 0 ? (
+                              <Image
+                                src={customer.image_url}
+                                className="rounded-full"
+                                alt={`${customer.name}'s profile picture`}
+                                width={28}
+                                height={28}
+                              />
+                            ) : (
+                              <div className="bg-gray-200 rounded-full w-7 h-7 flex items-center justify-center">
+                                <UserCircleIcon className="h-4 w-4 text-gray-500" />
+                              </div>
+                            )}
                             <p>{customer.name}</p>
                           </div>
                         </div>
@@ -83,13 +91,20 @@ export default async function CustomersTable({
                     <tr key={customer.id} className="group">
                       <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
                         <div className="flex items-center gap-3">
-                          <Image
-                            src={customer.image_url}
-                            className="rounded-full"
-                            alt={`${customer.name}'s profile picture`}
-                            width={28}
-                            height={28}
-                          />
+                          {typeof customer.image_url === "string" &&
+                          customer.image_url.trim().length > 0 ? (
+                            <Image
+                              src={customer.image_url}
+                              className="rounded-full"
+                              alt={`${customer.name}'s profile picture`}
+                              width={28}
+                              height={28}
+                            />
+                          ) : (
+                            <div className="bg-gray-200 rounded-full w-7 h-7 flex items-center justify-center">
+                              <UserCircleIcon className="h-4 w-4 text-gray-500" />
+                            </div>
+                          )}
                           <p>{customer.name}</p>
                         </div>
                       </td>
